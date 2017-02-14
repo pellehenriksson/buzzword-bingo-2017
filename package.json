@@ -1,0 +1,20 @@
+{
+  "name": "buzzword-bingo",
+  "version": "1.0.0",
+  "description": "Multiplayer [buzzword bingo](https://en.wikipedia.org/wiki/Buzzword_bingo) built with node and react for Bluegarden Hackathon 2017",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pellehenriksson/buzzword-bingo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pellehenriksson/buzzword-bingo/issues"
+  },
+  "homepage": "https://github.com/pellehenriksson/buzzword-bingo#readme"
+}
