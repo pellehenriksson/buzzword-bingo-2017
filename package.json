@@ -21,9 +21,11 @@
   },
   "homepage": "https://github.com/pellehenriksson/buzzword-bingo#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.3",
     "express": "^4.14.1",
     "express-handlebars": "^3.0.0",
     "node-jsx": "^0.13.3",
+    "node-uuid": "^1.4.7",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
