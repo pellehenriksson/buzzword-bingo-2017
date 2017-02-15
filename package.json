@@ -2,9 +2,12 @@
   "name": "buzzword-bingo",
   "version": "1.0.0",
   "description": "Multiplayer [buzzword bingo](https://en.wikipedia.org/wiki/Buzzword_bingo) built with node and react for Bluegarden Hackathon 2017",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+   "watch": "watchify app.js -o public/js/bundle.js -v",
+    "browserify": "browserify app.js | uglifyjs > public/js/bundle.js",
+    "build": "npm run browserify ",
+    "start": "npm run watch & nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,24 @@
   "bugs": {
     "url": "https://github.com/pellehenriksson/buzzword-bingo/issues"
   },
-  "homepage": "https://github.com/pellehenriksson/buzzword-bingo#readme"
+  "homepage": "https://github.com/pellehenriksson/buzzword-bingo#readme",
+  "dependencies": {
+    "express": "^4.14.1",
+    "express-handlebars": "^3.0.0",
+    "node-jsx": "^0.13.3",
+    "react": "^15.4.2"
+  },
+  "devDependencies": {
+    "browserify": "^14.1.0",
+    "jshint": "^2.9.4",
+    "nodemon": "^1.11.0",
+    "reactify": "^1.1.1",
+    "uglify-js": "^2.7.5",
+    "watchify": "^3.9.0"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  }
 }
