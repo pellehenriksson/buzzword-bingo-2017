@@ -9,6 +9,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 app.get('/', routes.index);
+app.get('/games', routes.games);
 
 app.use("/", express.static(__dirname + "/public/"));
 

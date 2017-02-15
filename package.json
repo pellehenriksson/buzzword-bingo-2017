@@ -4,7 +4,7 @@
   "description": "Multiplayer [buzzword bingo](https://en.wikipedia.org/wiki/Buzzword_bingo) built with node and react for Bluegarden Hackathon 2017",
   "main": "app.js",
   "scripts": {
-   "watch": "watchify app.js -o public/js/bundle.js -v",
+    "watch": "watchify app.js -o public/js/bundle.js -v",
     "browserify": "browserify app.js | uglifyjs > public/js/bundle.js",
     "build": "npm run browserify ",
     "start": "npm run watch & nodemon server.js"
@@ -24,7 +24,8 @@
     "express": "^4.14.1",
     "express-handlebars": "^3.0.0",
     "node-jsx": "^0.13.3",
-    "react": "^15.4.2"
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "devDependencies": {
     "browserify": "^14.1.0",
