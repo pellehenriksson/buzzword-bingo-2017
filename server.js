@@ -24,7 +24,7 @@ app.use("/", express.static(__dirname + "/public/"));
 app.engine("handlebars", exphbs({ defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
-// -- routes ---------------------------------------------------------
+// -- routes --------------------------------------------------------
 app.get("/", gameRoutes.index);
 
 app.get("/games", gameRoutes.games);
@@ -33,6 +33,12 @@ app.post("/games", gameRoutes.newGame);
 
 app.get("/play/:id", playRoutes.index);
 
+// default when no matching route
+app.use(function(req, res){
+       res.redirect("/");
+   });
+
+// -- start server --------------------------------------------------
 app.listen(port, function(err){
     if (err){
         console.error(err);
