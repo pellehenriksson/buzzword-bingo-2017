@@ -12,14 +12,20 @@ function gameRegistry(){
         _games.push(game);
     }
 
+    function get(id){
+        var result = _.find(_games, function(g){ return g.id === id; });
+        return result;
+    }
+
     function getPlayerGames(playerId){
-        var result = _.filter(_games, function(g){ return g.playerId === playerId;});
+        var result = _.filter(_games, function(g){ return g.playerId === playerId; });
         return result || [];
     }
 
     return {
         games: _games,
         add : add,
+        get: get,
         getPlayerGames: getPlayerGames
     };
 }

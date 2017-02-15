@@ -6,8 +6,8 @@ var uuid = require("node-uuid");
 
 var playerIdentity = require("./utils/playeridentity");
 
-var gameRoutes = require("./gameRoutes");
-var playRoutes = require("./playRoutes");
+var myGamesRoutes = require("./myGamesRoutes");
+var playGameRoutes = require("./playGameRoutes");
 
 var app = express();
 var port = process.env.PORT || 5000;
@@ -25,13 +25,12 @@ app.engine("handlebars", exphbs({ defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
 // -- routes --------------------------------------------------------
-app.get("/", gameRoutes.index);
+app.get("/", myGamesRoutes.index);
+app.get("/games", myGamesRoutes.games);
+app.get("/games/list", myGamesRoutes.gamesList);
+app.post("/games", myGamesRoutes.newGame);
 
-app.get("/games", gameRoutes.games);
-app.get("/games/list", gameRoutes.gamesList);
-app.post("/games", gameRoutes.newGame);
-
-app.get("/play/:id", playRoutes.index);
+app.get("/play/:id", playGameRoutes.index);
 
 // default when no matching route
 app.use(function(req, res){

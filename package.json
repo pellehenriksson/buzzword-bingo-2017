@@ -5,8 +5,9 @@
   "main": "app.js",
   "scripts": {
     "watch": "watchify app.js -o public/js/bundle.js -v",
-    "browserify": "browserify app.js | uglifyjs > public/js/bundle.js",
-    "build": "npm run browserify ",
+    "browserify1": "browserify mygames-client.js | uglifyjs > public/js/mygames-bundle.js",
+    "browserify2": "browserify playgame-client.js | uglifyjs > public/js/playgame-bundle.js",
+    "build": "npm run browserify1 & npm run browserify2",
     "start": "npm run watch & nodemon server.js"
   },
   "repository": {

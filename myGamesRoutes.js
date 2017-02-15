@@ -14,7 +14,7 @@ module.exports = {
     games: function(req, res){
         var games = gameRegistry.getPlayerGames(req.cookies.buzzwordbingo);
         var markup = ReactDOM.renderToString(MyGames( { data: games }));
-        res.render("games", { markup: markup, state: JSON.stringify(games) });
+        res.render("mygames", { markup: markup, state: JSON.stringify(games) });
     },
 
     gamesList: function(req, res){
