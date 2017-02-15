@@ -1,5 +1,7 @@
 /** @jsx React.DOM */
 var React = require("react");
+var axios = require("axios");
+
 var GameItem = require("./GameItem.react");
 var NewGame = require("./NewGame.react");
 
@@ -37,11 +39,31 @@ module.exports = Games = React.createClass({
         this.setState(this.getInitialState(newProps));
     },
 
-    handleNewGameChanged: function(){
+    handleNewGameChanged: function(e){
         var name = e.target.value.trim();
         this.setState({ newGame: name });
     },
+
     handleNewGameClick: function(){
-        console.log("button clicked");
+
+        var model = {
+            name : this.state.newGame
+        };
+
+        var self = this;
+
+        axios.post("/games", model)
+            .then(function(response){
+
+                axios.get("games/list")
+                    .then(function(response){
+                        console.log(response);
+                        self.setState({data: response.data});
+                    });              
+
+                self.setState({newGame: ""});
+            }).catch(function(error){
+                console.error(error);
+            });
     }
 });

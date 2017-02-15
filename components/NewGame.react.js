@@ -7,7 +7,7 @@ module.exports = NewGame = React.createClass({
             <h4>Start a new game</h4>
             <form>
                 <input type="text" className="u-full-width" onChange={this.props.onChange} value={this.props.name} />
-                <input type="button" className="button-primary" value="Create" onClick={this.props.onClick} />
+                <input type="button" className="button-primary" value="Create" onClick={this.props.onClick} disabled={!this.props.name}/>
             </form>
         </div>);
     }
