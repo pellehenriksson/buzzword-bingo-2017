@@ -17,6 +17,13 @@ Game.prototype.buildBoard = function(playerId){
     return board;
 };
 
+Game.prototype.getPlayerBoard = function(playerId){
+    var result = _.find(this.boards, function(b){
+        return b.playerId === playerId;
+    });
+    return result;
+};
+
 Game.prototype.toString = function(){
     return JSON.stringify(this);
 };
