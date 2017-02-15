@@ -8,6 +8,7 @@ function gameRegistry(){
 
     function add(name, playerId){
         var game = new Game(name, playerId);
+        game.buildBoard(playerId);
         _games.push(game);
     }
 
