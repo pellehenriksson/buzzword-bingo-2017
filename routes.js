@@ -10,7 +10,13 @@ module.exports = {
     },
 
     games: function(req, res){
-        var markup = ReactDOM.renderToString(Games());
-        res.render("games", { markup: markup });
+
+        var data = [
+            { id: 1, name: "game 1" },
+            { id: 2, name: "game 2" }
+        ];    
+
+        var markup = ReactDOM.renderToString(Games( {data: data }));
+        res.render("games", { markup: markup, state: JSON.stringify(data) });
     }
 };
