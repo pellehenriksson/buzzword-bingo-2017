@@ -8,7 +8,8 @@
     "browserify1": "browserify mygames-client.js | uglifyjs > public/js/mygames-bundle.js",
     "browserify2": "browserify playgame-client.js | uglifyjs > public/js/playgame-bundle.js",
     "build": "npm run browserify1 & npm run browserify2",
-    "start": "npm run watch & nodemon server.js"
+    "start": "npm run watch & nodemon server.js",
+    "test": "mocha tests"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,8 @@
     "nodemon": "^1.11.0",
     "reactify": "^1.1.1",
     "uglify-js": "^2.7.5",
-    "watchify": "^3.9.0"
+    "watchify": "^3.9.0",
+    "should": "^11.2.0"
   },
   "browserify": {
     "transform": [
