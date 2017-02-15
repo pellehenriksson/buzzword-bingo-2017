@@ -2,10 +2,10 @@
 var React = require("react");
 var axios = require("axios");
 
-var GameItem = require("./GameItem.react");
-var NewGame = require("./NewGame.react");
+var GameItem = require("./MyGameItem.react");
+var NewGame = require("./MyNewGame.react");
 
-module.exports = Games = React.createClass({
+module.exports = MyGames = React.createClass({
         render: function(){
         return (<div>
             <h4>My Games</h4>
@@ -19,11 +19,11 @@ module.exports = Games = React.createClass({
                 </thead>
                 <tbody>
                     {this.state.data.map(function(game, index){
-                        return <GameItem key={index} game={game} />;
+                        return <MyGameItem key={index} game={game} />;
                     }, this)}
                 </tbody>
             </table>
-            <NewGame name={this.state.newGame} onChange={this.handleNewGameChanged} onClick={this.handleNewGameClick} />
+            <MyNewGame name={this.state.newGame} onChange={this.handleNewGameChanged} onClick={this.handleNewGameClick} />
         </div>);
         },
 

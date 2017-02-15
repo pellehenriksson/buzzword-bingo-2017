@@ -2,17 +2,18 @@
 /** @jsx React.DOM */
 var React = require("react");
 var ReactDOM = require("react-dom");
-var Games = require("./components/Games.react");
+
+var MyGames = require("./components/MyGames.react");
 
 var initialState = JSON.parse(document.getElementById("initial-state").innerHTML);
 
-ReactDOM.render(React.createElement(Games, {data: initialState}), document.getElementById("react-app"));
+ReactDOM.render(React.createElement(MyGames, {data: initialState}), document.getElementById("react-app"));
 
-},{"./components/Games.react":3,"react":207,"react-dom":54}],2:[function(require,module,exports){
+},{"./components/MyGames.react":3,"react":207,"react-dom":54}],2:[function(require,module,exports){
 /** @jsx React.DOM */
 var React = require("react");
 
-module.exports = GameItem = React.createClass({displayName: "GameItem",
+module.exports = MyGameItem = React.createClass({displayName: "MyGameItem",
     render: function(){
         return (React.createElement("tr", null, 
                 React.createElement("td", null, this.props.game.id), 
@@ -26,10 +27,10 @@ module.exports = GameItem = React.createClass({displayName: "GameItem",
 var React = require("react");
 var axios = require("axios");
 
-var GameItem = require("./GameItem.react");
-var NewGame = require("./NewGame.react");
+var GameItem = require("./MyGameItem.react");
+var NewGame = require("./MyNewGame.react");
 
-module.exports = Games = React.createClass({displayName: "Games",
+module.exports = MyGames = React.createClass({displayName: "MyGames",
         render: function(){
         return (React.createElement("div", null, 
             React.createElement("h4", null, "My Games"), 
@@ -43,11 +44,11 @@ module.exports = Games = React.createClass({displayName: "Games",
                 ), 
                 React.createElement("tbody", null, 
                     this.state.data.map(function(game, index){
-                        return React.createElement(GameItem, {key: index, game: game});
+                        return React.createElement(MyGameItem, {key: index, game: game});
                     }, this)
                 )
             ), 
-            React.createElement(NewGame, {name: this.state.newGame, onChange: this.handleNewGameChanged, onClick: this.handleNewGameClick})
+            React.createElement(MyNewGame, {name: this.state.newGame, onChange: this.handleNewGameChanged, onClick: this.handleNewGameClick})
         ));
         },
 
@@ -90,11 +91,11 @@ module.exports = Games = React.createClass({displayName: "Games",
     }
 });
 
-},{"./GameItem.react":2,"./NewGame.react":4,"axios":5,"react":207}],4:[function(require,module,exports){
+},{"./MyGameItem.react":2,"./MyNewGame.react":4,"axios":5,"react":207}],4:[function(require,module,exports){
 /** @jsx React.DOM */
 var React = require("react");
 
-module.exports = NewGame = React.createClass({displayName: "NewGame",
+module.exports = MyNewGame = React.createClass({displayName: "MyNewGame",
     render : function(){
         return (React.createElement("div", null, 
             React.createElement("h4", null, "Start a new game"), 

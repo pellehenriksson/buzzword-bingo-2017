@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 var React = require("react");
 
-module.exports = GameItem = React.createClass({
+module.exports = MyGameItem = React.createClass({
     render: function(){
         return (<tr>
                 <td>{this.props.game.id}</td>

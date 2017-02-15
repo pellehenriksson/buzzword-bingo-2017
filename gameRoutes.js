@@ -4,7 +4,7 @@ var ReactDOM = require("react-dom/server");
 
 var gameRegistry = require("./models/gameRegistry");
 
-var Games = React.createFactory(require("./components/Games.react"));
+var MyGames = React.createFactory(require("./components/MyGames.react"));
 
 module.exports = {
     index: function(req, res){
@@ -13,7 +13,7 @@ module.exports = {
 
     games: function(req, res){
         var games = gameRegistry.getPlayerGames(req.cookies.buzzwordbingo);
-        var markup = ReactDOM.renderToString(Games( { data: games }));
+        var markup = ReactDOM.renderToString(MyGames( { data: games }));
         res.render("games", { markup: markup, state: JSON.stringify(games) });
     },
 

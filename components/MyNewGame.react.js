@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 var React = require("react");
 
-module.exports = NewGame = React.createClass({
+module.exports = MyNewGame = React.createClass({
     render : function(){
         return (<div>
             <h4>Start a new game</h4>
