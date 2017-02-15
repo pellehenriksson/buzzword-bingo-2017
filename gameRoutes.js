@@ -12,12 +12,21 @@ module.exports = {
     },
 
     games: function(req, res){
-        var markup = ReactDOM.renderToString(Games( {data: gameRegistry.games }));
-        res.render("games", { markup: markup, state: JSON.stringify(gameRegistry.games) });
+        
+        var games = gameRegistry.getPlayerGames(req.cookies.buzzwordbingo);
+
+        console.log(games);
+
+        var markup = ReactDOM.renderToString(Games( { data: games }));
+        
+        console.log(markup);
+
+        res.render("games", { markup: markup, state: JSON.stringify(games) });
     },
 
     gamesList: function(req, res){
-        res.json(gameRegistry.games);
+        var games = gameRegistry.getPlayerGames(req.cookies.buzzwordbingo);
+        res.json(games);
     },
 
     newGame: function (req, res){

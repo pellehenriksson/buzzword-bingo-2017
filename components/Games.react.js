@@ -31,7 +31,7 @@ module.exports = Games = React.createClass({
             props = props || this.props;
             return {
                 data: props.data,
-                newGame: "some new game"
+                newGame: ""
             };
     },
 
@@ -54,14 +54,12 @@ module.exports = Games = React.createClass({
 
         axios.post("/games", model)
             .then(function(response){
-
                 axios.get("games/list")
                     .then(function(response){
-                        console.log(response);
-                        self.setState({data: response.data});
+                        self.setState({ data: response.data });
+                        self.setState({ newGame: "" });
                     });              
 
-                self.setState({newGame: ""});
             }).catch(function(error){
                 console.error(error);
             });

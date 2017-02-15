@@ -1,20 +1,25 @@
+var _ = require("lodash");
+
 var Game = require("./Game");
 
 function gameRegistry(){
 
-    var games = [];
-
-    games.push(new Game("a", "hej"));
-    games.push(new Game("b", "då"));
+    var _games = [];
 
     function add(name, playerId){
         var game = new Game(name, playerId);
-        games.push(game);
+        _games.push(game);
     }
 
-    return{
-        games: games,
-        add : add
+    function getPlayerGames(playerId){
+        var result = _.filter(_games, function(g){ return g.playerId === playerId;});
+        return result || [];
+    }
+
+    return {
+        games: _games,
+        add : add,
+        getPlayerGames: getPlayerGames
     };
 }
 
