@@ -24,6 +24,14 @@ Game.prototype.getPlayerBoard = function(playerId){
     return result;
 };
 
+Game.prototype.getOpponentBoards = function(playerId){
+    var result = _.filter(this.boards, function(b){
+        return b.playerId !== playerId;
+    });
+
+    return result;
+};
+
 Game.prototype.toString = function(){
     return JSON.stringify(this);
 };
