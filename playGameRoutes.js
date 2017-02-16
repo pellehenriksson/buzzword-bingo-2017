@@ -20,5 +20,16 @@ module.exports = {
         var board = game.getPlayerBoard(req.cookies.buzzwordbingo);
 
         board.setPlayerName(req.body.name);
+
+        res.sendStatus(200);
+    },
+
+    markSquare: function(req, res){
+        var game = gameRegistry.get(req.params.id);
+        var board = game.getPlayerBoard(req.cookies.buzzwordbingo);
+
+        board.markSquare(req.body.squareId);
+
+        res.sendStatus(200);
     }
 };

@@ -32,6 +32,7 @@ app.post("/games", myGamesRoutes.newGame);
 
 app.get("/play/:id", playGameRoutes.index);
 app.post("/play/:id/changeplayername", playGameRoutes.changePlayerName);
+app.post("/play/:id/marksquare", playGameRoutes.markSquare);
 
 // default when no matching route
 app.use(function(req, res){
