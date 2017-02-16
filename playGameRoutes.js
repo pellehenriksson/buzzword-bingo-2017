@@ -13,6 +13,9 @@ function PlayGameRoutes(io){
         var game = gameRegistry.get(req.params.id);
 
         // set some fallback param here as well, if no cooke expect some other param
+        console.log("cookie:" +  req.cookies.buzzwordbingo);
+        console.log("param: " +  req.params.buzzwordbingo);
+
         var playerId = req.cookies.buzzwordbingo || req.params.buzzwordbingo;
 
         console.log("Get board for player: " + playerId);
@@ -51,7 +54,7 @@ function PlayGameRoutes(io){
         board.setPlayerName(req.body.name);
 
         emitGameEvent(req.params.id,  board.toModel());
-
+        
         res.sendStatus(200);
     }
 
@@ -64,7 +67,10 @@ function PlayGameRoutes(io){
         
         console.log("Mark square: " + req.body.squareId);
         board.markSquare(req.body.squareId);
-
+        
+        if (board.gotBingo()){
+            emitBingoEvent(req.params.id, board.playerName);
+        }
         emitGameEvent(req.params.id, board.toModel());
 
         res.sendStatus(200);
@@ -73,6 +79,12 @@ function PlayGameRoutes(io){
     function emitGameEvent(gameId, model){
         console.log("Emit event: 'gameEvent' for room:" + gameId);
         io.to(gameId).emit("gameEvent", model);
+    }
+
+    function emitBingoEvent(gameId, name){
+        console.log("Emit event: 'bingoEvent' for room:" + gameId);
+        var model = { playerName: name };
+        io.to(gameId).emit("bingoEvent", model);
     }
 
     return {

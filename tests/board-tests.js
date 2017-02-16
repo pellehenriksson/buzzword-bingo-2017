@@ -84,4 +84,55 @@ describe("Board", function(){
             result.board.squares.length.should.equal(9);
         });
     });
+
+    describe("gotBingo()", function(){
+
+        describe("no complete row or column", function(){
+
+            var gameId = uuid.v1();
+            var playerId = uuid.v1();
+            var sut = buildBoard(gameId, playerId);
+
+            it("should be false", function(){
+                
+                var result = sut.gotBingo();
+                result.should.equal(false);
+
+            });
+        });
+
+        describe("one complete row", function(){
+            
+            var gameId = uuid.v1();
+            var playerId = uuid.v1();
+            var sut = buildBoard(gameId, playerId);
+
+            sut.markSquare(sut.squares[0].id);
+            sut.markSquare(sut.squares[1].id);   
+            sut.markSquare(sut.squares[2].id);
+
+            it("should be true", function(){
+                
+                var result = sut.gotBingo();
+                result.should.equal(true);
+            });
+        });
+
+         describe("one complete column", function(){
+            
+            var gameId = uuid.v1();
+            var playerId = uuid.v1();
+            var sut = buildBoard(gameId, playerId);
+
+            sut.markSquare(sut.squares[0].id);
+            sut.markSquare(sut.squares[3].id);   
+            sut.markSquare(sut.squares[6].id);
+
+            it("should be true", function(){
+
+                var result = sut.gotBingo();
+                result.should.equal(true);
+            });
+        });
+    });
 });

@@ -5,6 +5,7 @@ var axios = require("axios");
 var PlayGamePlayer = require("./PlayGamePlayer.react");
 var PlayGameBoard = require("./PlayGameBoard.react");
 var PlayGameOpponents = require("./PlayGameOpponents.react");
+var PlayGameBingo = require("./PlayGameBingo.react");
 
 module.exports = PlayGame = React.createClass({
     
@@ -16,6 +17,7 @@ module.exports = PlayGame = React.createClass({
                     <PlayGamePlayer gameId={this.props.data.gameId} boardId={this.props.data.board.id} name={this.props.data.board.playerName}/>
                     <PlayGameBoard gameId={this.props.data.gameId} board={this.props.data.board} />
                     <p></p>
+                    <PlayGameBingo playerName={this.state.playerName} />
                     <div>
                         <PlayGameOpponents opponents={this.state.data.opponents}/>
                     </div>
@@ -28,6 +30,7 @@ module.exports = PlayGame = React.createClass({
         
         return {
             data: props.data,
+            playerName: ""
         };
     },
 
@@ -40,6 +43,7 @@ module.exports = PlayGame = React.createClass({
         this.socket.emit("join", this.props.data.gameId);
         
         this.socket.on("gameEvent", this.handleGameEvent);
+        this.socket.on("bingoEvent", this.handleBingo)
     },
 
     componentWillUnmount: function(){
@@ -49,8 +53,6 @@ module.exports = PlayGame = React.createClass({
     },
 
     handleGameEvent: function(data){
-
-        console.log(data);
 
         if (data.board.id === this.state.data.board.id) {
             console.log("This player caused the change, do nothing");
@@ -70,5 +72,11 @@ module.exports = PlayGame = React.createClass({
         }
 
         this.setState({ opponents: opponents });
+    },
+
+    handleBingo: function(data){
+        console.log(data);
+
+        this.setState({playerName: data.playerName});
     }
 });

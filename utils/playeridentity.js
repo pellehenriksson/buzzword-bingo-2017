@@ -2,6 +2,7 @@ var cookieParser = require("cookie-parser");
 var uuid = require("node-uuid");
 
 module.exports = function(req, res, next){
+    
     var cookie = req.cookies.buzzwordbingo;
 
     if (cookie === undefined){

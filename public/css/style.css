@@ -31,15 +31,6 @@
     cursor: pointer;
 }
 
-/*
-.opponents {
-    display: flex;
-    flex-direction: row;
-    flex-flow: row wrap;
-    justify-content: space-around;
-}
-*/
-
 .opponent-board {
     display: flex;
     width: 210px;
@@ -54,7 +45,7 @@
     height: 70px;
     box-sizing: border-box;
     border: 1px solid black;
-    background-color: white;
+    background-color: lightgrey;
 }
 
 .opponent-square-marked {
@@ -62,5 +53,5 @@
     height: 70px;
     box-sizing: border-box;
     border: 1px solid black;
-    background-color: chartreuse;
+    background-color: lightgreen;
 }

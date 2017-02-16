@@ -22,8 +22,32 @@ Board.prototype.markSquare = function(id){
 };
 
 Board.prototype.gotBingo = function(){
-    // one row bingo only at this point
-    var rows = _.uniqBy(this.squares, "row");
+
+    for(var i = 1; i< 4; i++){
+
+        var colsInRow = _.filter(this.squares, function(item){
+            return item.row === i;
+        });
+        var rowCompleted = _.every(colsInRow, function(item){return item.marked === true;});
+        if (rowCompleted){
+            return true;
+        }
+    }
+
+    for(var i = 1; i< 4; i++){
+
+        var colsInCol = _.filter(this.squares, function(item){
+            return item.col === i;
+        });
+        
+        var colCompleted = _.every(colsInCol, function(item){return item.marked === true;});
+        if (colCompleted){
+            return true;
+        }
+    }
+
+    return false;
+
 };
 
 Board.prototype.toModel = function(){
