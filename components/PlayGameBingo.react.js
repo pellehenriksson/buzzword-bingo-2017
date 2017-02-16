@@ -5,7 +5,10 @@ var PlayGameBingo = React.createClass({
 
     render: function () {
             if (this.props.playerName){
-                return <h1>{this.props.playerName} won this game ;)</h1>;
+                return <div>
+                    <h1>{this.props.playerName} won this game ;)</h1>
+                    <img src="/img/loket-olsson.png" />
+                </div>;
             }
 
             return <span></span>;
