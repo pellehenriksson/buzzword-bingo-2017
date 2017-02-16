@@ -6,10 +6,11 @@ Stuff to try out:
 * node 
 * express
 * react
+* socket.io
+* unit testing javascript
+* flexbox
 * passport
 * redis (maybe)
-* unit testing javascript
 * node in azure
-* flexbox
 * webpack
 * es6 (maybe)
