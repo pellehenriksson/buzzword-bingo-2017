@@ -7,9 +7,6 @@ var gameRegistry = require("./models/gameRegistry");
 var MyGames = React.createFactory(require("./components/MyGames.react"));
 
 module.exports = {
-    index: function(req, res){
-        res.render("index");
-    },
 
     games: function(req, res){
         var games = gameRegistry.getPlayerGames(req.cookies.buzzwordbingo);

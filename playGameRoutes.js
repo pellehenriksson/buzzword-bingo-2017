@@ -13,20 +13,21 @@ function PlayGameRoutes(io){
         var game = gameRegistry.get(req.params.id);
 
         // set some fallback param here as well, if no cooke expect some other param
+        var playerId = req.cookies.buzzwordbingo || req.params.buzzwordbingo;
 
-        console.log("Get board for player: " + req.cookies.buzzwordbingo);
-        var board = game.getPlayerBoard(req.cookies.buzzwordbingo);
+        console.log("Get board for player: " + playerId);
+        var board = game.getPlayerBoard(playerId);
         
         if (!board){
-            console.log("Player: '" + req.cookies.buzzwordbingo + "' has no board, creating new");
-            board = game.buildBoard(req.cookies.buzzwordbingo);
+            console.log("Player: '" + playerId + "' has no board, creating new");
+            board = game.buildBoard(playerId);
         }
         
         var model = board.toModel();
 
         model.gameName = game.name;
 
-        var opponents = game.getOpponentBoards(req.cookies.buzzwordbingo);
+        var opponents = game.getOpponentBoards(playerId);
         var x = opponents.map(function(b){
             return b.toModel();
         });

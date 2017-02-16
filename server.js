@@ -39,8 +39,8 @@ io.on("connection", function(socket){
 });
 
 // -- routes --------------------------------------------------------
-app.get("/", myGamesRoutes.index);
-app.get("/games", myGamesRoutes.games);
+
+app.get("/", myGamesRoutes.games);
 app.get("/games/list", myGamesRoutes.gamesList);
 app.post("/games", myGamesRoutes.newGame);
 

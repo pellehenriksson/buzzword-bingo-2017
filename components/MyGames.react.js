@@ -10,13 +10,6 @@ module.exports = MyGames = React.createClass({
             return (<div>
                 <h4>My Games</h4>
                 <table className="u-full-width">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th></th>
-                        </tr>
-                    </thead>
                     <tbody>
                         {this.state.data.map(function(game, index){
                             return <MyGameItem key={index} game={game} />;
