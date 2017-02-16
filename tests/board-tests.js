@@ -80,6 +80,7 @@ describe("Board", function(){
             result.gameId.should.equal(sut.gameId);
             result.playerId.should.equal(sut.playerId);
             result.board.id.should.equal(sut.id);
+            result.board.playerName.should.equal("a nameless ghoul");
             result.board.squares.length.should.equal(9);
         });
     });

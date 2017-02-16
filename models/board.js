@@ -30,13 +30,14 @@ Board.prototype.toModel = function(){
 
     return {
         gameId: this.gameId,
-        gameName: "",
+        gameName: "", // set later
         playerId: this.playerId,
         board: {
             id: this.id,
+            playerName: this.playerName,
             squares: this.squares.map(function(s){ return s.toModel(); })
         },
-        opponents: []
+        opponents: [] // set later
     };
 };
 
