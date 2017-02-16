@@ -8,13 +8,12 @@ var PlayGame = React.createFactory(require("./components/PlayGame.react"));
 
 module.exports = {
     index : function(req, res){
-
         var game = gameRegistry.get(req.params.id);
         var board = game.getPlayerBoard(req.cookies.buzzwordbingo) || game.buildBoard(req.cookies.buzzwordbingo);
+        var model = board.toModel();
+        model.gameName = game.name;
 
-        console.log(board);
-
-        var markup = ReactDOM.renderToString(PlayGame());
-        res.render("play", { markup: markup });
+        var markup = ReactDOM.renderToString(PlayGame({ data: model }));
+        res.render("playgame", { markup: markup, state: JSON.stringify(model) });
     }
 };

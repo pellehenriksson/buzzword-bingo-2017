@@ -1,5 +1,7 @@
 var Board = require("../models/board");
 var Square = require("../models/square");
+var buildBoard = require("../models/board-builder");
+
 var uuid = require("node-uuid");
 
 var should = require("should");
@@ -62,6 +64,23 @@ describe("Board", function(){
 
             sut.markSquare(square.id);
             square.marked.should.equal(true);
+        });
+    });
+
+    describe("toModel()", function(){
+
+        var gameId = uuid.v1();
+        var playerId = uuid.v1();
+        var sut = buildBoard(gameId, playerId);
+
+        it("should return a model", function(){
+
+            var result = sut.toModel();
+
+            result.gameId.should.equal(sut.gameId);
+            result.playerId.should.equal(sut.playerId);
+            result.board.id.should.equal(sut.id);
+            result.board.squares.length.should.equal(9);
         });
     });
 });

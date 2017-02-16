@@ -26,6 +26,20 @@ Board.prototype.gotBingo = function(){
     var rows = _.uniqBy(this.squares, "row");
 };
 
+Board.prototype.toModel = function(){
+
+    return {
+        gameId: this.gameId,
+        gameName: "",
+        playerId: this.playerId,
+        board: {
+            id: this.id,
+            squares: this.squares.map(function(s){ return s.toModel(); })
+        },
+        opponents: []
+    };
+};
+
 Board.prototype.toString = function(){
     return JSON.stringify(this);
 };

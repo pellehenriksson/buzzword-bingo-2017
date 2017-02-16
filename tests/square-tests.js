@@ -34,4 +34,17 @@ describe("Square", function(){
             sut.marked.should.equal(true);
         });
     });
+
+    describe("toModel()", function(){
+
+        var sut = new Square(1, 2, "fart");
+
+        it("should return model", function(){
+            var result = sut.toModel();
+
+            result.id.should.equal(sut.id);
+            result.word.should.equal(sut.word);
+            result.marked.should.equal(sut.marked);
+        });
+    });
 });

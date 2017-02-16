@@ -7,32 +7,32 @@ var NewGame = require("./MyNewGame.react");
 
 module.exports = MyGames = React.createClass({
         render: function(){
-        return (<div>
-            <h4>My Games</h4>
-            <table className="u-full-width">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.state.data.map(function(game, index){
-                        return <MyGameItem key={index} game={game} />;
-                    }, this)}
-                </tbody>
-            </table>
-            <MyNewGame name={this.state.newGame} onChange={this.handleNewGameChanged} onClick={this.handleNewGameClick} />
-        </div>);
-        },
+            return (<div>
+                <h4>My Games</h4>
+                <table className="u-full-width">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.data.map(function(game, index){
+                            return <MyGameItem key={index} game={game} />;
+                        }, this)}
+                    </tbody>
+                </table>
+                <MyNewGame name={this.state.newGame} onChange={this.handleNewGameChanged} onClick={this.handleNewGameClick} />
+            </div>);
+    },
 
-        getInitialState: function(props){
-            props = props || this.props;
-            return {
-                data: props.data,
-                newGame: ""
-            };
+    getInitialState: function(props){
+        props = props || this.props;
+        return {
+            data: props.data,
+            newGame: ""
+        };
     },
 
     componentWillReceiveProps: function(newProps, oldProps){
@@ -40,7 +40,7 @@ module.exports = MyGames = React.createClass({
     },
 
     handleNewGameChanged: function(e){
-        var name = e.target.value.trim();
+        var name = e.target.value;
         this.setState({ newGame: name });
     },
 
