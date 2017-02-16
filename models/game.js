@@ -5,7 +5,7 @@ var uuid = require("node-uuid");
 var _ = require("lodash");
 
 function Game(name, playerId){
-    this.id = uuid.v1();
+    this.id = uuid.v4();
     this.name = name;
     this.playerId = playerId;
     this.boards = [];

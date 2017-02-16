@@ -2,7 +2,7 @@ var _ = require("lodash");
 var uuid = require("node-uuid");
 
 function Board(gameId, playerId, squares){
-    this.id = uuid.v1();
+    this.id = uuid.v4();
     this.playerId = playerId;
     this.gameId = gameId;
     this.playerName = "a nameless ghoul";

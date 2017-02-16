@@ -1,7 +1,7 @@
 var uuid = require("node-uuid");
 
 function Square(row, col, word){
-    this.id = uuid.v1();
+    this.id = uuid.v4();
     this.col = col;
     this.row = row;
     this.word = word;
