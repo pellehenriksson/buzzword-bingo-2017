@@ -7,9 +7,12 @@ var uuid = require("node-uuid");
 var playerIdentity = require("./utils/playeridentity");
 
 var myGamesRoutes = require("./myGamesRoutes");
-var playGameRoutes = require("./playGameRoutes");
+var playGameRoutes = require("./playGameRoutes"); // maybe pass the io in here !! 
 
 var app = express();
+var server = require('http').createServer(app);  
+var io = require('socket.io')(server);
+
 var port = process.env.PORT || 5000;
 
 // -- middle ware ---------------------------------------------------
@@ -23,6 +26,30 @@ app.use("/", express.static(__dirname + "/public/"));
 
 app.engine("handlebars", exphbs({ defaultLayout: "main"}));
 app.set("view engine", "handlebars");
+
+// -- socket --------------------------------------------------------
+io.on("connection", function(socket){
+   
+    console.log("connected");
+    
+    socket.on("join", function(room){
+        
+        socket.join(room);
+        
+        console.log("joined room " + room);
+
+        io.to(room).emit("gameEvent", { data: "slayer slayer" });
+
+     });
+
+    socket.on("leave", function(room){
+        socket.leave(room);
+    });
+
+    socket.on("disconnect", function(){
+        console.log("disconnect");
+    });
+});
 
 // -- routes --------------------------------------------------------
 app.get("/", myGamesRoutes.index);
@@ -40,7 +67,7 @@ app.use(function(req, res){
    });
 
 // -- start server --------------------------------------------------
-app.listen(port, function(err){
+server.listen(port, function(err){
     if (err){
         console.error(err);
     }

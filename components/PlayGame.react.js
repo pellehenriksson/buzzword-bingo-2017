@@ -28,5 +28,22 @@ module.exports = PlayGame = React.createClass({
 
      componentWillReceiveProps: function(newProps, oldProps){
         this.setState(this.getInitialState(newProps));
+    },
+
+    componentDidMount: function(){
+        this.socket = io();
+        this.socket.emit("join", this.props.data.gameId);
+        
+        this.socket.on("gameEvent", this.handleGameEvent);
+    },
+
+    componentWillUnmount: function(){
+        if (this.socket){
+            this.socket.emit("leave", this.props.data.gameId);
+        }
+    },
+
+    handleGameEvent: function(data){
+        console.log(data);
     }
 });
