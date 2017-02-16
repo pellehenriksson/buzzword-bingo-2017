@@ -1,11 +1,12 @@
 var Board = require("./board");
 var Square = require("./square");
 var buzzwords = require("./buzzwords");
+var helpers = require("../utils/helpers")();
 
 function buildBoard(gameId, playerId){
    
     var numberOfSquares = 9;
-    var words = buzzwords.slice(0, 9); // get random words
+    var words =  helpers.shuffle(buzzwords).slice(0, 9);
     var row = 1;
     var col = 1;
 
