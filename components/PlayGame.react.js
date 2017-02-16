@@ -49,6 +49,26 @@ module.exports = PlayGame = React.createClass({
     },
 
     handleGameEvent: function(data){
+
         console.log(data);
+
+        if (data.board.id === this.state.data.board.id) {
+            console.log("This player caused the change, do nothing");
+            return;
+        }
+
+        var opponents = this.state.data.opponents;
+
+        var index = opponents.findIndex(function (item) {
+            return item.board.id === data.board.id;
+        });
+
+        if (index > -1) {
+            opponents[index] = data;
+        } else {
+            opponents.push(data);
+        }
+
+        this.setState({ opponents: opponents });
     }
 });
